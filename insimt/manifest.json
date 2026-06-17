@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Platform Assistant - Interview Mode",
+  "version": "1.0.0",
+  "description": "An interactive interview simulation buddy that overlays onto problem-solving platforms.",
+  "permissions": [
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "src/background/index.ts",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://leetcode.com/problems/*",
+        "https://*.hackerrank.com/challenges/*",
+        "https://codeforces.com/problemset/problem/*",
+        "https://codeforces.com/contest/*/problem/*"
+      ],
+      "js": ["src/content/index.ts"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Toggle Interview Buddy"
+  }
+}
